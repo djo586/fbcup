@@ -1,0 +1,88 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+int main() {
+freopen("a.txt","r",stdin);
+freopen("ou.txt","w",stdout);
+
+int i, j, k, n, cas, ex, jeux, occ, minij;
+cin >> cas;
+for (k=1;k<=cas;k++)
+{
+    cin >> n;
+    char tab[n][n];
+    minij=-2;
+    occ=0;
+    for (i=0;i<n;i++)
+    {
+        for (j=0;j<n;j++)
+            cin >> tab[i][j];
+    }
+    for (i=0;i<n;i++)
+    {
+        j=jeux=0;
+        ex=1;
+        while ((j<n)&&(ex))
+        {
+            if (tab[i][j]=='O')
+                ex=0;
+            else
+                if (tab[i][j]=='.')
+                    jeux++;
+            j++;
+        }
+        if (ex)
+        {
+            if (minij==-2)
+            {
+                minij=jeux;
+                occ++;
+            }
+            if (jeux<minij)
+            {
+                minij=jeux;
+                occ=1;
+            }
+            else
+                occ++;
+        }
+    }
+        for (i=0;i<n;i++)
+    {
+        j=jeux=0;
+        ex=1;
+        while ((j<n)&&(ex))
+        {
+            if (tab[j][i]=='O')
+                ex=0;
+            else
+                if (tab[j][i]=='.')
+                    jeux++;
+            j++;
+        }
+        if (ex)
+        {
+            if (minij==-2)
+            {
+                minij=jeux;
+                occ++;
+            }
+            if (jeux<minij)
+            {
+                minij=jeux;
+                occ=1;
+            }
+            else
+                occ++;
+        }
+
+    }
+    if (minij==-2)
+        cout << "Case #" << k << ": Impossible"<< endl;
+    else
+        cout << "Case #" << k << ": " << minij << " " << occ << endl;
+
+}
+
+return 0;
+}
